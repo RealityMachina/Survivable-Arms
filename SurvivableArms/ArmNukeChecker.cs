@@ -13,7 +13,7 @@ namespace SurvivableArms
         [HarmonyPatch("DamageComponent")]
         public static class BattleTech_MechComponent_Prefix
         {
-            static void Prefix(MechComponent __instance, ref ComponentDamageLevel damageLevel)
+            static void Prefix(MechComponent __instance, ref ComponentDamageLevel damageLevel, bool applyEffects)
             {
                 if(__instance.mechComponentRef.MountedLocation == ChassisLocations.LeftArm && Holder.LeftArmSurvived)
                 {
