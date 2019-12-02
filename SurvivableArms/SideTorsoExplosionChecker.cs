@@ -26,7 +26,7 @@ namespace SurvivableArms
                 float currentArmor = __instance.GetCurrentArmor(aLoc);
                 if (currentArmor > 0f)
                 {
-                    float num2 = Mathf.Min(totalDamage, currentArmor);
+                    float num2 = Math.Min(totalDamage, currentArmor);
 
                     num = totalDamage - num2;
                 }
@@ -40,7 +40,8 @@ namespace SurvivableArms
                 float currentStructure = __instance.GetCurrentStructure(chassisLocationFromArmorLocation);
                 if (currentStructure > 0f)
                 {
-                    float num4 = Mathf.Min(num, currentStructure);
+                   
+                    float num4 = Math.Min(num, currentStructure);
                     bool WasDestroyed = (currentStructure - num) <= 0; //if currentstructure minus remaining damage is less or equal to 0, then the location is destroyed.
 
                     num -= num4;
