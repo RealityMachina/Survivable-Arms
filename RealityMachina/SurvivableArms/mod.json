@@ -1,0 +1,11 @@
+{
+    "Name": "Survivable Arms",
+
+    "Version": "1.0.1",
+    "Description": "Allows items on 'Mech arms to survive battle damage when it's possible.",
+    "Author": "RealityMachina",
+    "Website": "https://github.com/RealityMachina/Survivable-Arms",
+
+    "DLL": "SurvivableArms.dll",
+
+}

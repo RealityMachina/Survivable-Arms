@@ -14,7 +14,8 @@ namespace SurvivableArms
         [HarmonyPatch("DamageLocation")]
         public static class BattleTech_Mech_DamageLocation_Prefix
         {
-            static void Prefix(Mech __instance, int originalHitLoc, WeaponHitInfo hitInfo, ArmorLocation aLoc, Weapon weapon, float totalDamage, int hitIndex, AttackImpactQuality impactQuality)
+            static void Prefix(Mech __instance, int originalHitLoc, WeaponHitInfo hitInfo, ArmorLocation aLoc, Weapon weapon,
+                float totalArmorDamage, float directStructureDamage, int hitIndex, AttackImpactQuality impactQuality, DamageType damageType)
             {
                 if (aLoc == ArmorLocation.None || aLoc == ArmorLocation.Invalid)
                 {
@@ -22,14 +23,16 @@ namespace SurvivableArms
                 }
 
 
-                float num = totalDamage;
+                float num = totalArmorDamage;
                 float currentArmor = __instance.GetCurrentArmor(aLoc);
                 if (currentArmor > 0f)
                 {
-                    float num2 = Math.Min(totalDamage, currentArmor);
 
-                    num = totalDamage - num2;
+                    num = totalArmorDamage - currentArmor;
+                   
                 }
+                num += directStructureDamage; // account for damage split: this should get us back where we were when we both had armour spillover damage and 
+                // any damage done directly to the structure
                 if (num <= 0f)
                 {
                     return; //no need to continue if the shot doesn't do anything we care about
